@@ -43,8 +43,8 @@ public class MainManager : MonoBehaviour
         playerName = GlobalManager.Instance.playerName;
         initialScore = GlobalManager.Instance.initialScore;
 
-        ScoreText2.text = "Best Score : "+playerName+ " : " + initialScore;
-
+        ScoreText2.text = "Best Score : "+ GlobalManager.Instance.highScorePlayerName + " : " + initialScore;
+        ScoreText.text = $"Score {playerName}: 0";
     }
 
     private void Update()
@@ -75,11 +75,11 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        ScoreText.text = $"Score {playerName}: {m_Points}";
 
         if (m_Points > initialScore) 
         {
-            ScoreText2.text = "Best Score : " + playerName + " : " + m_Points;
+            ScoreText2.text = "Best Score : " + GlobalManager.Instance.highScorePlayerName + " : " + m_Points;
         }
 
     }
@@ -90,6 +90,7 @@ public class MainManager : MonoBehaviour
         {
             GlobalManager.Instance.initialScore = m_Points;
             GlobalManager.Instance.playerHighScore = m_Points;
+            GlobalManager.Instance.highScorePlayerName = playerName;
             GlobalManager.Instance.saveData();
         }
         m_GameOver = true;

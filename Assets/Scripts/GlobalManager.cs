@@ -7,6 +7,7 @@ using System.IO;
 public class GlobalManager : MonoBehaviour
 {
     public string playerName;
+    public string highScorePlayerName = "juanito";
     public int playerHighScore;
     public int initialScore;
     public static GlobalManager Instance;
@@ -31,14 +32,17 @@ public class GlobalManager : MonoBehaviour
     {
         public string playerName;
         public int playerHighScore;
+        public string hsPlayerName;
 
     }
 
     public void saveData()
     {
         SaveData data = new SaveData();
+
         data.playerName = playerName;
         data.playerHighScore = playerHighScore;
+        data.hsPlayerName = highScorePlayerName;
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
@@ -47,13 +51,15 @@ public class GlobalManager : MonoBehaviour
     public void loadData()
     {
         string path = Application.persistentDataPath + "/savefile.json";
-
+        
         if (File.Exists(path))
         {
+            Debug.Log("I found the save");
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
             playerHighScore = data.playerHighScore;
             playerName = data.playerName;
+            highScorePlayerName = data.hsPlayerName;
         }
     }
 }
