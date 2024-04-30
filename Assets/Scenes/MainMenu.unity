@@ -593,6 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
+  highScorePlayerName: juanito
   playerHighScore: 0
   initialScore: 0
 --- !u!1 &324783224
@@ -2009,7 +2010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1790442786
 RectTransform:
   m_ObjectHideFlags: 0
