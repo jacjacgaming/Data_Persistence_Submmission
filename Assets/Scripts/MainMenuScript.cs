@@ -11,16 +11,23 @@ public class MainMenuScript : MonoBehaviour
     public string nameInput;
     public int bestScore = 0;
     public TMP_Text bestScoretext;
+    public GameObject scorePanel;
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-
-
-        bestScore = 2;
+        GlobalManager.Instance.loadData();
+        bestScore = GlobalManager.Instance.playerHighScore;
+        nameInput = GlobalManager.Instance.playerName;
+        
         Debug.Log("Im here");
-        bestScoretext.text = "Best Score Name: " + bestScore;
+        nameInput = GlobalManager.Instance.playerName;
+        bestScoretext.text = "Best Score "+ nameInput+ " : "+bestScore;
+
+
     }
 
 
@@ -29,6 +36,7 @@ public class MainMenuScript : MonoBehaviour
         Debug.Log("Game Should Start for: "+ nameInput);
         GlobalManager.Instance.playerName = nameInput;
         GlobalManager.Instance.initialScore = bestScore;
+        
         SceneManager.LoadScene(1);
     }
 
@@ -41,4 +49,19 @@ public class MainMenuScript : MonoBehaviour
     {
         nameInput = inputName;
     }
+
+    public void scoresButtonPressed()
+    {
+        if (!scorePanel.activeInHierarchy)
+        {
+            scorePanel.SetActive(true);
+        }
+        else
+        {
+            scorePanel.SetActive(false);
+        }
+        //scorePanel.SetActive(false);
+    }
+
+
 }

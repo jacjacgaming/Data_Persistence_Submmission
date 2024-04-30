@@ -89,6 +89,8 @@ public class MainManager : MonoBehaviour
         if (m_Points > initialScore)
         {
             GlobalManager.Instance.initialScore = m_Points;
+            GlobalManager.Instance.playerHighScore = m_Points;
+            GlobalManager.Instance.saveData();
         }
         m_GameOver = true;
         GameOverText.SetActive(true);
